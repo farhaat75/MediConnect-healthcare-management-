@@ -1,45 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header.jsx";
 import Footer from "@/components/Footer.jsx";
 import { Video, User, Stethoscope } from "lucide-react";
 import PatientVideoConsultations from "@/components/video/PatientVideoConsultations.jsx";
 import DoctorVideoConsultations from "@/components/video/DoctorVideoConsultations.jsx";
 import VideoCallUI from "@/components/video/VideoCallUI.jsx";
-import { getUpcomingAppointments } from "@/utils/localStorage.js";
+import { useAppointments } from "@/context/AppointmentContext.jsx";
 
 const VideoConsultation = () => {
+  const { getVideoConsultations, updateAppointmentStatus } = useAppointments();
   const [activeTab, setActiveTab] = useState("patient");
-  const [videoConsultations, setVideoConsultations] = useState([]);
   const [inCall, setInCall] = useState(false);
   const [activeConsultation, setActiveConsultation] = useState(null);
+  const [isWaitingRoom, setIsWaitingRoom] = useState(false);
 
-  // Load video consultations from localStorage
-  useEffect(() => {
-    const loadConsultations = () => {
-      const appointments = getUpcomingAppointments();
-      // Filter only virtual/video consultations
-      const videoOnly = appointments.filter(
-        (apt) => apt.consultationMode === "virtual"
-      );
-      setVideoConsultations(videoOnly);
-    };
+  const videoConsultations = getVideoConsultations();
 
-    loadConsultations();
-  }, []);
-
-  const handleJoinCall = (consultation) => {
+  const handleJoinCall = (consultation, isEarly = false) => {
     setActiveConsultation(consultation);
+    setIsWaitingRoom(isEarly);
     setInCall(true);
   };
 
   const handleStartCall = (consultation) => {
     setActiveConsultation(consultation);
+    setIsWaitingRoom(false);
     setInCall(true);
   };
 
   const handleEndCall = () => {
     setInCall(false);
     setActiveConsultation(null);
+    setIsWaitingRoom(false);
+  };
+
+  const handleMarkComplete = (appointmentId) => {
+    updateAppointmentStatus(appointmentId, "Completed");
   };
 
   // Show video call UI when in call
@@ -49,6 +45,8 @@ const VideoConsultation = () => {
         consultation={activeConsultation}
         userType={activeTab}
         onEndCall={handleEndCall}
+        onMarkComplete={handleMarkComplete}
+        isWaitingRoom={isWaitingRoom}
       />
     );
   }
