@@ -333,7 +333,7 @@ const VideoCallUI = ({ consultation, userType, onEndCall, onMarkComplete, isWait
         {userType === "doctor" && (
           <div className={`absolute top-0 right-0 h-full w-80 bg-card/20 backdrop-blur-md border-l border-primary-foreground/10 flex flex-col transition-transform duration-300 ${isNotesOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className="p-4 border-b border-primary-foreground/10 flex items-center justify-between">
-              <h3 className="text-primary-foreground font-semibold">Consultation Notes</h3>
+              <h3 className="text-primary-foreground font-semibold">Prescription Notes</h3>
               <Button
                 variant="ghost"
                 size="icon"
@@ -348,7 +348,7 @@ const VideoCallUI = ({ consultation, userType, onEndCall, onMarkComplete, isWait
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Type consultation notes here..."
+                placeholder="Type here..."
                 className="w-full h-full bg-primary-foreground/10 border border-primary-foreground/20 rounded-xl p-4 text-primary-foreground placeholder:text-primary-foreground/40 resize-none focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
             </div>
@@ -356,10 +356,10 @@ const VideoCallUI = ({ consultation, userType, onEndCall, onMarkComplete, isWait
             <div className="p-4 border-t border-primary-foreground/10 space-y-3">
               <Button
                 className="w-full bg-green-600 hover:bg-green-700 gap-2"
-                onClick={handleMarkComplete}
+                //onClick={handleMarkComplete}
               >
                 <CheckCircle className="w-4 h-4" />
-                Mark as Completed
+                Submit Prescription
               </Button>
             </div>
           </div>

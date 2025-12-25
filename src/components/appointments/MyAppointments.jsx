@@ -12,10 +12,10 @@ const MyAppointments = ({ appointments }) => {
           <p className="text-muted-foreground mb-4">
             No upcoming appointments found. Please book a new appointment.
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground bg-muted/50 rounded-lg px-4 py-2 mx-auto w-fit">
+          {/* <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground bg-muted/50 rounded-lg px-4 py-2 mx-auto w-fit">
             <AlertCircle className="w-4 h-4" />
             <span>Appointments are stored in memory and will reset on page refresh.</span>
-          </div>
+          </div> */}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import Header from "@/components/Header.jsx";
 import HeroSection from "@/components/HeroSection.jsx";
-import FeaturesSection from "@/components/FeaturesSection.jsx";
-import BenefitsSection from "@/components/BenefitsSection.jsx";
+import ModulesSection from "@/components/ModulesSection.jsx";
+import QuickActionsSection from "@/components/QuickActionsSection.jsx";
 import Footer from "@/components/Footer.jsx";
 
 const Index = () => {
@@ -10,8 +10,8 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <FeaturesSection />
-        <BenefitsSection />
+        <ModulesSection />
+        {/* <QuickActionsSection /> */}
       </main>
       <Footer />
     </div>
